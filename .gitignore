@@ -1,0 +1,6 @@
+.ipynb_checkpoints
+__pycache__
+*.swp
+py150.tar.gz
+*.json
+parse_python.py
