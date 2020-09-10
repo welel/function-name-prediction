@@ -3,7 +3,8 @@ import json
 
 def append_functions_infile(file_name, functions):
     '''Функция принимает на вход назване json файла и последовательность
-    функций, и добавляет функции в конец файла'''
+    функций, и добавляет функции в конец файла
+    '''
     with open(file_name, 'a') as json_file:
         for function in functions:
             json.dump(function, json_file)
@@ -14,9 +15,9 @@ def get_funcs(module):
     Функция выбирает слайсы относящиеся к функциям и возвращает слайсы
     этих функций.
     
-    module[i] -> node
-    node -> {'type':str, 'children':list, 'value':str}
-    node['children'][i] -> int
+        * module[i] -> node
+        * node -> {'type':str, 'children':list, 'value':str}
+        * node['children'][i] -> int
     '''
     functions = []
     i = 0
@@ -42,9 +43,21 @@ def load_portion_functions(file_name, pos, lines):
         json_file.seek(pos)
         i = lines
         while i != 0:
-            functions.extend(get_funcs(json.loads(json_file.readline())))
+            try:
+                functions.extend(get_funcs(json.loads(json_file.readline())))
+            except json.JSONDecodeError:
+                print('JSONDecodeError exception: pos=%d' % pos)
+                return None, pos
             i-=1
         return functions, json_file.tell()
+
+    def filter_functions_name(functions, names):
+        '''Фильтрует функции по полученному на вход списку имен функций,
+        которые надо оставить.
+        Returns:
+            * functions [list]
+        '''
+        return list(filter(lambda func: func[0]['value'] in names, functions))
 
 
 
