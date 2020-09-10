@@ -51,13 +51,22 @@ def load_portion_functions(file_name, pos, lines):
             i-=1
         return functions, json_file.tell()
 
-    def filter_functions_name(functions, names):
-        '''Фильтрует функции по полученному на вход списку имен функций,
-        которые надо оставить.
-        Returns:
-            * functions [list]
-        '''
-        return list(filter(lambda func: func[0]['value'] in names, functions))
+def filter_functions_name(functions, names):
+    '''Фильтрует функции по полученному на вход списку имен функций,
+    которые надо оставить.
+    Returns:
+        * functions [list]
+    '''
+    return list(filter(lambda func: func[0]['value'] in names, functions))
 
-
+def load_functions(file_name):
+    '''Загрузка датасета с функциями из json файла'''
+    functions = []
+    with open(file_name, 'r') as json_file:
+        for line in json_file:
+            try:
+                functions.append(json.loads(json_file.readline()))
+            except json.JSONDecodeError:
+                print('JSONDecodeError')
+    return functions
 
