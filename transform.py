@@ -1,3 +1,4 @@
+import json
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 
@@ -39,9 +40,21 @@ class Converter(object):
 
     def to_file(self):
         '''Сохраняет словарь с отображениями в файл'''
-        with open('dictionary_'+ str(len(self)) + '.txt', 'w') as file:
-            for item in self.item_index_dict:
-                file.write(item + ',' + str(self.item_to_index(item)) + '\n')
+        with open('dictionary_'+ str(len(self)) + '.json', 'w') as json_file:
+            json.dump(self.item_index_dict, json_file)
+
+
+    def from_file(file_name: str):
+        '''
+        Загружает отображение словарей конвертера из файла
+        и возвращает проинициализированный конвертер.
+        '''
+        converter = Converter([])
+        with open(file_name, 'r') as json_file:
+            converter.item_index_dict = json.load(json_file)
+            for item, index in converter.item_index_dict.items():
+                converter.index_item_dict[index] = item
+        return converter
 
     def build_converters(x_train, x_test, y_train, y_test, verbose=0):
         '''
@@ -69,8 +82,9 @@ class Converter(object):
         converter_labels = Converter(sequence)
 
         if verbose >= 1:
-            print('Уникальных токенов: ' + str(len(converter_data)))
-            print('Уникальных классов: ' + str(len(converter_labels)), end='\n\n')
+            print('[build_converters] Уникальных токенов:', str(len(converter_data)))
+            print('[build_converters] Уникальных классов:', str(len(converter_labels)),
+                  end='\n\n')
         return converter_data, converter_labels
 
 
@@ -93,8 +107,8 @@ class Converter(object):
                 for item in row:
                     sequence[index].append(self.item_to_index(item))
         if verbose >= 1:
-            print('Пример данных после data_to_digit: ')
-            print(sequence[0])
+            print('[data_to_digit] Пример данных:')
+            print(sequence[0], end='\n\n')
         return sequence
 
 
@@ -117,8 +131,8 @@ def to_same_length(sequence: list,
     sequence = pad_sequences(sequence, maxlen=maxlen)
 
     if verbose >= 1:
-        print('Пример данных выборки после приведения к одной длине:')
-        print(sequence[0],end='\n\n')
+        print('''[to_same_length] Пример данных:''')
+        print(sequence[0], end='\n\n')
     return sequence
 
 
@@ -134,10 +148,10 @@ def vectorize_sequences(classes: list, dimension: int, verbose=0) -> list:
         * classes_ohe: list (метки преобразованные в One Hot Encoding формат)
     '''
     classes_ohe = np.zeros((len(classes), dimension))
-    for i, sequence in enumerate(classes):
+    for i, classes in enumerate(classes):
         classes_ohe[i, classes] = 1.
 
     if verbose >= 1:
-        print('Пример метки выборки:')
+        print('[vectorize_sequences] Пример метки выборки в OHE:')
         print(classes_ohe[0], end='\n\n')
     return classes_ohe
