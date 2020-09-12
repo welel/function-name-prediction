@@ -1,4 +1,4 @@
-![](/home/pavel/function-name-prediction/README/images/login_snippet.png)
+![](README/images/login_snippet.png)
 
 # Function Name Prediction
 
