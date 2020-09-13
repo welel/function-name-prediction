@@ -1,14 +1,17 @@
-import json
 from typing import Union
+import json
+
 
 def append_functions_in_json(file_name: str, functions: list):
-    '''Функция принимает на вход назване json файла и последовательность
-    функций, и добавляет функции в конец файла
+    '''
+    Функция принимает на вход назване json файла и последовательность
+    функций, и добавляет функции в конец файла.
     '''
     with open(file_name, 'a') as json_file:
         for function in functions:
             json.dump(function, json_file)
             json_file.write('\n')
+
 
 def get_funcs_from_module(module: list) -> list:
     '''
@@ -30,6 +33,7 @@ def get_funcs_from_module(module: list) -> list:
             i+=1
     return functions
 
+
 def read_portion_data(file_name: str,
                       pos: int,
                       num_lines: int
@@ -37,6 +41,7 @@ def read_portion_data(file_name: str,
     '''
     Загрузка порции данных из файла, читая файл с определенной
     позиции (pos) и определенное количество строк (lines).
+
     Returns:
         * data [list]
         * last_position [int]
@@ -51,6 +56,7 @@ def read_portion_data(file_name: str,
             num_lines -= 1
         return data, file.tell()
 
+
 def simplify_functions(functions: list) -> list:
     '''
     Приводит названия полученных функций и значения ее узлов к нижнему
@@ -62,21 +68,26 @@ def simplify_functions(functions: list) -> list:
                 functions[i][j]['value'] = functions[i][j]['value'].lower().replace('__', '')
     return functions
 
+
 def filter_functions_name(functions: list, names: set) -> list:
-    '''Фильтрует функции по полученному на вход списку имен функций,
+    '''
+    Фильтрует функции по полученному на вход списку имен функций,
     которые надо оставить.
+
     Returns:
         * functions [list]
     '''
     return list(filter(lambda func: func[0]['value'] in names, functions))
 
+
 def load_functions_from_json(file_name: str) -> list:
-    '''Загрузка датасета с функциями из json файла'''
+    '''Загрузка датасета с функциями из json файла.'''
     functions = []
     with open(file_name, 'r') as json_file:
         for line in json_file:
             functions.append(json.loads(line))
     return functions
+
 
 def dataset_save_to_csv(file_name: str, dataset: list):
     '''
@@ -88,8 +99,9 @@ def dataset_save_to_csv(file_name: str, dataset: list):
         for data in dataset:
                 writer.writerow({'name': data[0], 'ast': ','.join(data[1])})
 
+
 def load_functions_from_json(file_name: str) -> list:
-    '''Загрузка датасета с функциями из json файла'''
+    '''Загрузка датасета с функциями из json файла.'''
     functions = []
     with open(file_name, 'r') as json_file:
         for line in json_file:

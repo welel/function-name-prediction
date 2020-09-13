@@ -2,6 +2,7 @@ import csv
 from transform import Converter, to_same_length, vectorize_sequences
 
 
+# TODO: добавить namedtuple
 def load_data(train_file_name: str, test_file_name: str, verbose: int=0):
     '''
     Принимает на вход названия тренировочного и валидационного файлов,
@@ -50,12 +51,34 @@ def load_data(train_file_name: str, test_file_name: str, verbose: int=0):
     return x_train, y_train, x_test, y_test
 
 
-def load_dataset(train_file_name,
-                 test_file_name,
-                 maxlen,
-                 data_converter=None,
-                 marks_converter=None,
-                 verbose=0):
+def load_dataset(train_file_name: str,
+                 test_file_name: str,
+                 maxlen: int,
+                 data_converter: Converter=None,
+                 marks_converter: Converter=None,
+                 verbose: int=0):
+    '''
+    Загружает датасет из файлов и подготавливает данные для обучения.
+
+    Takes:
+        * train_file_name: str (название файла с тренировочными данными)
+        * test_file_name: str (название файла с тестовыми данными)
+        * maxlen: int (максимальная длинна последовательностей на выходе)
+        * data_converter: Converter (конвертер для трансформации
+                                    последовательностей)
+        * marks_converter: Converter (конвертер для трансформации меток)
+        * verbose: int (вывод информации о данных в stdout, значения [0-3])
+    Returns:
+        * x_train: list (тренировочные данные для обучения)
+        * y_train: list (метки для валидации предсказания
+                        для тренировочной выборки)
+        * x_test: list (тестовые данные для проверки модели)
+        * y_test: list (метки для валидации предсказания
+                        для тестовой выборки)
+        * data_converter: Converter (конвертер для трансформации
+                                    последовательностей)
+        * marks_converter: Converter (конвертер для трансформации меток)
+    '''
     # Загрузка данных
     x_train, y_train, x_test, y_test = load_data(
         train_file_name,

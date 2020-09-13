@@ -23,6 +23,7 @@ def shuffle_file_lines(
             file.write(header)
         file.write('\n'.join(rows))
 
+
 def merge_files(filename1: str, filename2: str, newfilename: str):
     '''
     Получает на вход 3 названия файлов, объеденяет два первых и

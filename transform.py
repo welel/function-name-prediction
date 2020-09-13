@@ -1,6 +1,6 @@
 import json
-from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
 class Converter(object):
@@ -11,7 +11,7 @@ class Converter(object):
     def __init__(self, sequence: list):
         '''
         Инициализирует словари по уникальным значениям полученной
-        последовательности
+        последовательности.
         '''
         self.item_index_dict = {}
         self.index_item_dict = {}
@@ -23,7 +23,7 @@ class Converter(object):
         assert len(self.item_index_dict) == len(self.index_item_dict)
 
     def item_to_index(self, item: str) -> int:
-        '''Получает на вход значение и возвращает его индекс'''
+        '''Получает на вход значение и возвращает его индекс.'''
         try:
             index = self.item_index_dict[item]
         except KeyError:
@@ -31,18 +31,17 @@ class Converter(object):
         return index
 
     def index_to_item(self, index: int) -> str:
-        '''Получает на вход индекс и возвращает соответствущее значение'''
+        '''Получает на вход индекс и возвращает соответствущее значение.'''
         return self.index_item_dict[index]
 
     def __len__(self):
-        '''Длина равна общему количеству отображений'''
+        '''Длина равна общему количеству отображений.'''
         return len(self.item_index_dict)
 
     def to_file(self):
-        '''Сохраняет словарь с отображениями в файл'''
+        '''Сохраняет словарь с отображениями в файл.'''
         with open('dictionary_'+ str(len(self)) + '.json', 'w') as json_file:
             json.dump(self.item_index_dict, json_file)
-
 
     def from_file(file_name: str):
         '''
@@ -92,6 +91,7 @@ class Converter(object):
         '''
         Совершает преобразование последовательности токенов к цифровому виду.
         Использует для преобразования словарь отображения item_index_dict.
+        
         Takes:
             * sequence: List[str] (последовательность токенов)
         Returns:
