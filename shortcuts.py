@@ -1,4 +1,5 @@
 from typing import Union
+import csv
 import json
 
 
@@ -98,12 +99,4 @@ def dataset_save_to_csv(file_name: str, dataset: list):
         writer = csv.DictWriter(csvfile, fieldnames=['name', 'ast'])
         for data in dataset:
                 writer.writerow({'name': data[0], 'ast': ','.join(data[1])})
-
-
-def load_functions_from_json(file_name: str) -> list:
-    '''Загрузка датасета с функциями из json файла.'''
-    functions = []
-    with open(file_name, 'r') as json_file:
-        for line in json_file:
-            functions.append(json.loads(line))
-    return functions
+                
