@@ -1,6 +1,6 @@
 # Датасет
 
-Данные для обучения были взяты из наборов данных [«Learning from Big Code»](http://learnbigcode.github.io/datasets/). Набор данных называется «Python ASTs». Он в себя включает 150 тысяч программ написанных на языке Python.
+​	Данные для обучения были взяты из наборов данных [«Learning from Big Code»](http://learnbigcode.github.io/datasets/). Набор данных называется «Python ASTs». Он в себя включает 150 тысяч программ написанных на языке Python.
 
 [Ссылка на скачивание](http://www.srl.inf.ethz.ch/py150)
 
