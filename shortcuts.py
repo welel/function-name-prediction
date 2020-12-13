@@ -98,5 +98,5 @@ def dataset_save_to_csv(file_name: str, dataset: list):
     with open(file_name, 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=['name', 'ast'])
         for data in dataset:
-                writer.writerow({'name': data[0], 'ast': ','.join(data[1])})
+                writer.writerow({'name': data[0], 'ast': ','.join(data[1]).replace('\n', '')})
                 
