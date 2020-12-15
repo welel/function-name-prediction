@@ -100,3 +100,15 @@ def dataset_save_to_csv(file_name: str, dataset: list):
         for data in dataset:
                 writer.writerow({'name': data[0], 'ast': ','.join(data[1]).replace('\n', '')})
                 
+
+def lzip(*iterables):
+    sentinel = object()
+    iterators = [iter(it) for it in iterables]
+    while iterators:
+        result = []
+        for it in iterators:
+            elem = next(it, sentinel)
+            if elem is sentinel:
+                return
+            result.append(elem)
+        yield list(result)
