@@ -2,11 +2,12 @@ import csv
 from transform import Converter, to_same_length, vectorize_sequences
 
 
+
 # TODO: добавить namedtuple
 def load_data(train_file_name: str, test_file_name: str, verbose: int=0):
     '''
     Принимает на вход названия тренировочного и валидационного файлов,
-    возращает 4 списка, два с метками и два с узлами.
+    возвращает 4 списка, два с метками и два с узлами.
 
     Returns:
         * x_train: list (тренировочные данные для обучения)
@@ -44,9 +45,9 @@ def load_data(train_file_name: str, test_file_name: str, verbose: int=0):
         print('load_data: Пример метки обучающей выборки:')
         print(y_test[5], end='\n\n')
     if verbose >= 3:
-        print('load_data: Обучающая выборка впорядке: ',
+        print('load_data: У обучающей выборки меток и данных поровну: ',
               str(len(x_train) == len(y_train)))
-        print('load_data: Тестовая выборка впорядке: ',
+        print('load_data: У тестовой выборки меток и данных поровну: ',
               str(len(x_test) == len(y_test)), end='\n\n')
     return x_train, y_train, x_test, y_test
 

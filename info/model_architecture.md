@@ -10,9 +10,9 @@
 
 2. [Архитектура нейронной сети](#2-архитектура-нейронных-сетей)
 
-   2.1.  [Convolution Neural Network](#2-1-convolution-neural-network)
+   2.1.  [Convolution Neural Network](#2.1-convolution-neural-network)
 
-   2.2.  [Long Short Term Memory](#2-2-long-short-term-memory)
+   2.2.  [Long Short Term Memory](#22-long-short-term-memory)
 
 ​    [Реализация](#реализация)
 
@@ -101,4 +101,6 @@ model.add(Dense(len(marks_converter), activation='softmax'))
 
 # Реализация
 
-Построение и тренировка нейронных сетей реализованы в `train.ipynb`.
+1. Построение и тренировка нейронных сетей реализованы в `train.ipynb`.
+
+2. Требуемые функции для выполнения notebook'ов в папке `core`.

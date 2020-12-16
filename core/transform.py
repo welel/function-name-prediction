@@ -3,6 +3,7 @@ import numpy as np
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
+
 class Converter(object):
     '''
     Класс Converter хранит словари токенов и меток, а также предоставляет
@@ -31,7 +32,7 @@ class Converter(object):
         return index
 
     def index_to_item(self, index: int) -> str:
-        '''Получает на вход индекс и возвращает соответствущее значение.'''
+        '''Получает на вход индекс и возвращает соответствующее значение.'''
         return self.index_item_dict[index]
 
     def __len__(self):

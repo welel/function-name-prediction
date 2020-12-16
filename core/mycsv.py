@@ -2,12 +2,13 @@ import csv
 import random
 
 
+
 def shuffle_file_lines(
         filename: str,
         header: bool=False,
         new_file: bool=False):
     '''
-    Принимает название файла и перемешивает сторки в файле.
+    Принимает название файла и перемешивает строки в файле.
     Если header = True, то пропускает первую строку.
     Если new_file = Ture, то записывает результат в новый файл.
     '''
@@ -26,7 +27,7 @@ def shuffle_file_lines(
 
 def merge_files(filename1: str, filename2: str, newfilename: str):
     '''
-    Получает на вход 3 названия файлов, объеденяет два первых и
+    Получает на вход 3 названия файлов, объединяет два первых и
     записывает результат в третий.
     '''
     rows = []
