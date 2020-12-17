@@ -12,7 +12,7 @@
 
    2.1.  [Convolution Neural Network](#2.1-convolution-neural-network)
 
-   2.2.  [Long Short Term Memory](#22-long-short-term-memory)
+   2.2.  [Long Short Term Memory](#22.-long-short-term-memory)
 
 ​    [Реализация](#реализация)
 
