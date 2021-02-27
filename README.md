@@ -9,6 +9,13 @@
 [Ссылка на PDF.](https://cyberleninka.ru/article/n/ob-opredelenii-nazvaniya-funktsii-po-abstraktnomu-sintaksicheskomu-derevu-s-pomoschyu-neyronnoy-seti/pdf)
 
 
+# Общая архитектура модели
+
+<img src="info/images/main_architecture.png"  />
+
+​		На рисунке в перых двух блоках *Парсер* и *Программный модуль обработки данных* происходит подготовка данных перед подачей их в нейронную сеть. Подробно процесс обработки описан в `info/data_preparation.md` в главе 2. В последнем блоке *Модель нейронной сети* определены два слоя – первый и последний. В промежуточных слоях учавствуют два варианта последовательностей слоев нейронных сетей. Подробная архитектура описана в `info/model_architecture.md`.
+
+
 
 # Структура директории проекта
 
